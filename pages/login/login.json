@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "v-code": "/components/vcode/index"
+  }
+}

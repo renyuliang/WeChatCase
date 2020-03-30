@@ -1,0 +1,19 @@
+/* pages/my/myGuide/myGuide.wxss */
+.guide {
+  padding: 0 32rpx;
+}
+
+.init-noData{
+  padding-top: 32rpx;
+}
+.init-tag{
+  padding-top: 32rpx;
+}
+.init-tag .name{
+  font-size: 24rpx;
+  color: #666;
+}
+
+.noData{
+  height: 100vh;
+}

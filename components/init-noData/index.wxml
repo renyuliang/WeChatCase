@@ -1,0 +1,5 @@
+<!--components/init-noData/index.wxml-->
+<view class="flex-column-c">
+  <image class="noDataImg" src="/static/images/{{imgName}}" mode="widthFix"></image>
+  <init-tag tips="{{tips}}" />
+</view>

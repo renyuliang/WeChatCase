@@ -1,0 +1,18 @@
+<!--pages/my/searchHospital/searchHospital.wxml-->
+<view class="searchPage">
+  <view class="search flex-r-c">
+    <icon class="iconfont iconsearch"></icon>
+    <input class="flex-all" placeholder="搜索医院名称" value="{{searchInput}}" bindinput="showInput" bindconfirm="confirmSearch" auto-focus="true" />
+    <icon class="iconfont iconedit_delete" bindtap="deleteSearch" wx:if="{{showDelete}}"></icon>
+  </view>
+  <view wx:if="{{showList}}">
+    <view class="tips">
+      关于"
+      <text class="tipsIndex">{{searchInput}}</text> "的医院搜索结果
+    </view>
+    <scroll-view scroll-y="true" style="height:{{scrollHeight}}px">
+      <view class="searchCon" wx:for="{{searchList}}" wx:key="id" data-hospital="{{item.name}}" data-id="{{item.id}}" bindtap="returnHospital">{{item.name}}</view>
+    </scroll-view>
+  </view>
+</view>
+<v-load class="loadCenter" wx:if="{{loading}}" />

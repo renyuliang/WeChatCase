@@ -1,0 +1,20 @@
+<!--pages/codeLogin/codeLogin.wxml-->
+<view class="login">
+  <form bindsubmit="formSubmit">
+    <view class="setInput">
+      <view class="flex-r-c">
+        <label class="label">手机号：</label>
+        <input class="flex-all" type="number" name="phone" placeholder="请输入手机号码" maxlength="11" bindblur="initBlurPhone" />
+        <v-code phone="{{getPhone}}" sendCode="{{sendCode}}" codeFrom="{{'login'}}" />
+      </view>
+      <view class="flex-r-c">
+        <label class="label">验证码：</label>
+        <input class="flex-all" type="number" name="code" placeholder="请输入验证码" maxlength="4" bindblur="initBlurCode"/>
+      </view>
+    </view>
+    <button formType="submit" class="loginBtn {{canLogin === true ? 'canLogin' : ''}}" style="width:100%;">同意协议并登录</button>
+    <view class="readYX">
+      已阅读并同意<text class="agree">《用户服务协议》、《隐私权政》</text>
+    </view>
+  </form>
+</view>

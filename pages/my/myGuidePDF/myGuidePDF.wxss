@@ -1,0 +1,4 @@
+/* pages/my/myGuidePDF/myGuidePDF.wxss */
+.noData{
+  height: 100%;
+}

@@ -1,0 +1,15 @@
+<!--pages/my/my.wxml-->
+<view>
+  <view class="header row-flex">
+    <image class="headerImg" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+    <view class="headerInfo">
+      <view class="name">{{userInfo.nickName}}</view>
+      <view class="auth" wx:if="{{!isAuth}}">未认证</view>
+      <view class="auth isAuth" wx:if="{{isAuth}}">
+        已实名
+        <image src="/static/images/sign_certification.png" mode="aspectFill" class="image"></image>
+      </view>
+    </view>
+  </view>
+  <v-imgList centerList="{{centerList}}" init-list="init-list" />
+</view>

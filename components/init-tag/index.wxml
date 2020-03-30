@@ -1,0 +1,6 @@
+<!--components/init-tag/index.wxml-->
+<view class="tips flex-c init-tag">
+  <text class="tipsLine"></text>
+  <text class="name">{{tips}}</text>
+  <text class="tipsLine"></text>
+</view>

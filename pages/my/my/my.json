@@ -1,0 +1,6 @@
+{
+  "navigationStyle":"custom",
+  "usingComponents": {
+    "v-imgList":"/components/init-imgList/index"
+  }
+}

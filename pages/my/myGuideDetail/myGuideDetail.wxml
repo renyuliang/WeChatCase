@@ -1,0 +1,41 @@
+<!--指南详情-->
+<view class="detail">
+  <view class="detailInfo">
+    <view class="detailTitle moreOverFlow">{{detailMsg.fileName}}</view>
+    <view class="detailCage">
+      <text class="English" wx:if="{{detailMsg.language=='EN'}}">英</text>
+      <text class="still">{{detailMsg.fileCategory}}</text>
+    </view>
+    <view class="detailSame">制定者：{{detailMsg.fileMaker}}</view>
+    <view class="detailSame">出处：{{detailMsg.fileSource}}</view>
+    <view class="detailSame">发表日期：{{detailMsg.publishDate}}</view>
+    <view class="row-flex">
+      <text>关键词:</text>
+      <view class="flex-all">{{detailMsg.fileTag}}</view>
+    </view>
+  </view>
+  <view class="detailContent">
+    <view class="conMain">指南摘要</view>
+    <view class="conNews moreOverFlow">{{detailMsg.fileAbstract||'暂无相关指南摘要，可进入指南直接查看'}}</view>
+    <view class="conAward" wx:if="{{giftStateResult}}">
+      <icon class="iconfont iconsign_expired" wx:if="{{giftState === '3'}}"></icon>
+      <icon class="iconfont iconsign_success" wx:if="{{giftState === '2'}}"></icon>
+      {{giftResult}}
+    </view>
+  </view>
+  <view class="flex-column-c">
+    <view class="readGuide" bindtap="bindPDF">
+      <icon class="iconfont iconsign_reward" wx:if="{{giftState === '0'}}"></icon>阅读指南
+    </view>
+    <view class="flex-r-c">
+      <button size="mini" plain="true" open-type="share" class="share">
+        <image src="/static/images/share.png" class="shareImg"></image>
+        分享给好友
+      </button>
+      <view class="readWard" bindtap="getAward" wx:if="{{giftState === '1'}}">
+        阅读奖励
+        <view class="readWardTips">领取奖励</view>
+      </view>
+    </view>
+  </view>
+</view>

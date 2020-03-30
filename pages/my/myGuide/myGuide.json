@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "已查阅指南",
+  "usingComponents": {
+    "init-guide":"/components/init-guide/index",
+    "init-tag": "/components/init-tag/index",
+    "init-load": "/components/init-loading/index",
+    "init-noData": "/components/init-noData/index"
+  }
+}

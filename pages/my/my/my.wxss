@@ -1,0 +1,52 @@
+/* init-list 自定义样式 */
+
+.header {
+  height: 320rpx;
+  background-image: linear-gradient(#1F95FD, #1F7AFD);
+  align-items: flex-end;
+  padding-bottom: 64rpx;
+}
+
+.headerImg {
+  width: 128rpx;
+  height: 128rpx;
+  border-radius: 50%;
+  margin: 0 32rpx;
+}
+
+.headerInfo {
+  color: #fff;
+}
+
+.name {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+}
+
+.auth {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  font-size: 24rpx;
+  padding: 8rpx 16rpx;
+  position: relative;
+}
+
+.isAuth {
+  padding: 6rpx 16rpx;
+}
+
+.image {
+  width: 36rpx;
+  height: 36rpx;
+  vertical-align: top;
+  margin-left: -8rpx;
+}
+
+/* 组件自定义样式 */
+
+.init-list:first-child {
+  margin: 24rpx 0;
+}

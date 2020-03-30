@@ -1,0 +1,77 @@
+/* pages/index/index.wxss */
+
+.Index {
+  position: relative;
+  height: 100%;
+}
+
+.header {
+  height: 300rpx;
+  background-image: linear-gradient(#1F95FD, #1F7AFD);
+}
+
+.headName {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #fff;
+  padding: 80rpx 64rpx 0 64rpx;
+}
+
+.swiper-box {
+  height: 344rpx;
+  position: absolute;
+  top: 164rpx;
+  left: 32rpx;
+  right: 32rpx;
+}
+
+.swiper-item {
+  border-radius: 16rpx;
+}
+
+.swiper-img {
+  width: 100%;
+}
+
+.indexTips {
+  padding: 0 32rpx;
+  margin: 272rpx 0 32rpx 0;
+  color: #212121;
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.iconlist_article_icon {
+  display: inline-flex;
+  font-size: 36rpx;
+  margin: 0 8rpx 0 0;
+}
+
+.newGuide {
+  padding: 0 32rpx;
+}
+
+.init-tag{
+  padding-top: 32rpx;
+}
+
+.init-tag .tipsLine {
+  width: 96rpx;
+}
+
+.init-tag .name {
+  font-size: 24rpx;
+  color: #b2b2b2;
+}
+
+.wx-swiper-dot.wx-swiper-dot {
+  width: 12rpx;
+  height: 12rpx;
+  border-radius: 12rpx;
+}
+
+.wx-swiper-dot.wx-swiper-dot-active {
+  width: 32rpx;
+  height: 12rpx;
+  border-radius: 12rpx;
+}

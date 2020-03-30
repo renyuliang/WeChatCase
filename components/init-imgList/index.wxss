@@ -1,0 +1,38 @@
+.list-item {
+  background-color: #fff;
+}
+
+.item {
+  justify-content: space-between;
+  height: 128rpx;
+  line-height: 128rpx;
+  padding: 0 32rpx;
+  position: relative;
+  width: 100%;
+}
+
+.iconlist_right_arrow {
+  font-size: 24rpx;
+}
+
+.flex-all {
+  overflow: hidden;
+  /* white-space: nowrap;
+  text-overflow: ellipsis; */
+}
+
+.name {
+  font-size: 32rpx;
+  margin-left: 32rpx;
+  color: #212121;
+}
+
+.line::before {
+  content: '';
+  width: calc(100% - 96rpx);
+  height: 1rpx;
+  background: rgba(238, 238, 238, 1);
+  position: absolute;
+  right: 0;
+  top: 100%;
+}

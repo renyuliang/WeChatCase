@@ -1,0 +1,13 @@
+<!--pages/my/myGuide/myGuide.wxml-->
+<view class="guide">
+  <init-guide guideList="{{guideList}}">
+    <view slot="statistic" wx:if="{{guideList.length}}">
+      <init-tag init-tag="init-tag" tips="{{tips}}" />
+    </view>
+  </init-guide>
+  <init-load isCenter="{{false}}" wx:if="{{showloadingBottom}}" />
+  <init-tag init-tag="init-noData" tips="{{'暂无更多信息'}}" wx:if="{{noData}}" />
+</view>
+<view class="noData flex-c" wx:if="{{!guideList.length}}">
+  <init-noData imgName="{{'image_nocontent.png'}}" tips="{{'暂无指南数据'}}" />
+</view>

@@ -1,0 +1,55 @@
+/* pages/login/login.wxss */
+
+.login {
+  padding: 80rpx 32rpx 0 32rpx;
+}
+
+.setInput {
+  background: #fff;
+  border-radius: 16rpx;
+  padding-left: 32rpx;
+}
+
+.flex-r-c {
+  height: 112rpx;
+  line-height: 112rpx;
+}
+
+.label{
+  font-size: 32rpx;
+  color: #7F7F7F;
+}
+
+.flex-all{
+  font-size: 32rpx;
+  color: #333333;
+}
+
+.flex-r-c:first-child {
+  border-bottom: 1rpx solid rgba(238, 238, 238, 1);
+  padding-right: 32rpx;
+}
+
+.loginBtn{
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 8rpx;
+  margin: 48rpx 0;
+  padding:0;
+  font-size: 36rpx;
+  color:rgba(255,255,255,1);
+  font-weight: normal;
+  background:rgba(29,114,239,0.5);
+}
+
+.canLogin{
+  background:rgba(29,114,239,1);
+}
+
+.readYX{
+  font-size: 24rpx;
+  color: #B2B2B2;
+}
+.agree{
+  color: #1D72EF;
+}

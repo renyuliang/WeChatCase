@@ -1,0 +1,25 @@
+<!--pages/index/index.wxml-->
+<view class="Index column-flex">
+  <view class="header">
+    <view class="headName">悬壶医讯</view>
+  </view>
+  <swiper class="swiper-box" indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}" indicator-color="#D5E3FB" indicator-active-color="#1D72EF">
+    <swiper-item class="swiper-item" wx:for="{{bannerList}}" wx:key="index">
+      <image src="{{item.imgUrl}}" mode="widthFix" class="swiper-img"></image>
+    </swiper-item>
+  </swiper>
+  <view class="indexTips flex-r-c">
+    <icon class="iconfont iconlist_article_icon"></icon>
+    最新指南
+  </view>
+  <view class="newGuide setHeight flex-all" wx:if="{{indexList.length}}">
+    <scroll-view scroll-y="true" style="height:{{scrollHeight}}px" bindscrolltolower="tapRollBottom">
+      <init-guide guideList="{{indexList}}"/>
+      <init-tag init-tag="init-tag" tips="{{'暂无更多信息'}}" wx:if="{{noData}}" />
+      <init-load isCenter="{{false}}" wx:if="{{showloadingBottom}}" />
+    </scroll-view>
+  </view>
+  <view class="newGuide flex-all flex-c" wx:else>
+    <init-noData imgName="{{'image_nocontent.png'}}" tips="{{'暂无收到的指南'}}" />
+  </view>
+</view>

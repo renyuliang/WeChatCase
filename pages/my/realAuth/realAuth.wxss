@@ -1,0 +1,158 @@
+/* 认证成功 */
+
+.realAuthSuccess {
+  padding: 32rpx;
+}
+
+.realInfo {
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.04);
+  border-radius: 16rpx;
+  padding: 0 32rpx 48rpx 32rpx;
+}
+
+.infoHead {
+  height: 140rpx;
+  line-height: 140rpx;
+  border-bottom: 1rpx dashed #eee;
+  position: relative;
+}
+
+.title {
+  font-size: 34rpx;
+  color: #212121;
+  font-weight: bold;
+  margin-left: 8rpx;
+}
+
+.iconimg_certification {
+  vertical-align: top;
+  font-size: 48rpx;
+}
+
+.sign_success {
+  /* font-size: 108rpx; */
+  width: 108rpx;
+  height: 108rpx;
+  position: absolute;
+  top: 0;
+  right: -32rpx;
+}
+
+.infoCon {
+  margin-top: 32rpx;
+  font-size: 30rpx;
+}
+
+.conTitle {
+  color: #7f7f7f;
+  width: 150rpx;
+  margin-right: 48rpx;
+}
+
+.conNews {
+  color: #333;
+  flex: 1;
+}
+
+/* 进行认证 */
+
+.Notice {
+  width: 100%;
+  height: 64rpx;
+  line-height: 64rpx;
+  background: rgba(253, 235, 176, 1);
+  color: rgba(253, 126, 31, 1);
+  font-size: 24rpx;
+  text-align: center;
+}
+
+.realAuthGoing {
+  padding: 48rpx 32rpx;
+}
+
+.goingList {
+  margin-bottom: 48rpx;
+}
+
+.tips {
+  color: rgba(102, 102, 102, 1);
+  font-size: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.setInput {
+  background: #fff;
+  border-radius: 16rpx;
+  padding-left: 32rpx;
+}
+
+.flex-r-c {
+  height: 112rpx;
+  line-height: 112rpx;
+}
+
+.label {
+  font-size: 32rpx;
+  color: #7f7f7f;
+  width: 160rpx;
+}
+
+.flex-all {
+  font-size: 32rpx;
+  color: #333;
+}
+
+.flex-r-c:first-child {
+  border-bottom: 1rpx solid rgba(238, 238, 238, 1);
+  padding-right: 32rpx;
+}
+
+.flexCode {
+  position: relative;
+}
+
+.codeFail {
+  font-size: 20rpx;
+  color: #f7402c;
+  position: absolute;
+  bottom: 10rpx;
+  left: 160rpx;
+  line-height: 1;
+}
+
+.loginBtn {
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 8rpx;
+  margin: 48rpx 0;
+  padding: 0;
+  font-size: 36rpx;
+  color: rgba(255, 255, 255, 1);
+  font-weight: normal;
+  background: rgba(29, 114, 239, 0.5);
+}
+
+.canLogin {
+  background: rgba(29, 114, 239, 1);
+}
+
+/* 自定义组件样式 */
+
+.init-list {
+  background-color: transparent !important;
+}
+
+.init-list .item {
+  height: 112rpx;
+  line-height: 112rpx;
+  padding: 0;
+}
+
+.init-list .item .name {
+  margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: calc(100vw - 160rpx - 160rpx);
+}

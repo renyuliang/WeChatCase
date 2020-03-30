@@ -1,0 +1,22 @@
+/* components/vcode/index.wxss */
+
+.code {
+  display: inline-flex;
+}
+
+.btn {
+  background: rgba(29, 114, 239, 0.1);
+  border-radius: 32rpx;
+  padding: 0;
+  text-align: center;
+  line-height: 64rpx;
+  height: 64rpx;
+  font-size: 28rpx;
+  color: #1D72EF;
+  font-weight: normal;
+}
+
+.disabled{
+  background:rgba(245,245,245,1) !important;
+  color: #B2B2B2 !important;
+}

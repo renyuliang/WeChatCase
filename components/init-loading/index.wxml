@@ -1,0 +1,8 @@
+<!--加载效果-->
+<view class="container">
+  <view wx:if="{{isCenter}}" class="loading-center scale-moveing"></view>
+  <view wx:else class="bottom">
+    <text class="loading-bottom rotate-moveing"></text>
+    <text class="size">加载中,请稍后...</text>
+  </view>
+</view>

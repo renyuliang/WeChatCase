@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "选择医院",
+  "usingComponents": {
+    "v-load": "/components/init-loading/index"
+  }
+}

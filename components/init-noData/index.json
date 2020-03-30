@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "init-tag": "/components/init-tag/index"
+  }
+}

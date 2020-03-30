@@ -1,0 +1,3 @@
+<view class="code">
+  <button class="btn {{disabled === true ? 'disabled':''}}" bindtap="getCode" disabled="{{disabled}}" style="width:188rpx;">{{codeText}}</button>
+</view>

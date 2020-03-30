@@ -1,0 +1,48 @@
+/* pages/my/searchHospital/searchHospital.wxss */
+
+page {
+  background-color: #fff;
+}
+
+.searchPage {
+  padding: 32rpx;
+  height: 100%;
+}
+
+.search {
+  height: 80rpx;
+  line-height: 80rpx;
+  background: rgba(245, 245, 245, 1);
+  border-radius: 8rpx;
+  padding: 0 30rpx;
+}
+
+.flex-all {
+  padding-left: 18rpx;
+}
+
+.iconfont {
+  font-size: 36rpx;
+}
+
+.tips {
+  margin: 48rpx 0;
+  font-size: 24rpx;
+  color: #b2b2b2;
+}
+
+.tipsIndex {
+  color: #1d72ef;
+}
+
+.searchCon{
+  font-size: 28rpx;
+  color: #333;
+  padding-bottom: 48rpx;
+}
+
+.loadCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}

@@ -1,0 +1,83 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": false,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.10.2",
+	"appid": "wx5c14c7798de606ac",
+	"projectname": "%E6%82%AC%E5%A3%B6%E5%B0%8F%E7%A8%8B%E5%BA%8F",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "pages/my/myGuide/myGuide",
+					"pathName": "pages/my/myGuide/myGuide",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "pages/my/userAgreement/userAgreement",
+					"pathName": "pages/my/userAgreement/userAgreement",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "pages/my/myGuideDetail/myGuideDetail",
+					"pathName": "pages/my/myGuideDetail/myGuideDetail",
+					"query": "scene=234243234234243",
+					"scene": 1011
+				}
+			]
+		}
+	}
+}

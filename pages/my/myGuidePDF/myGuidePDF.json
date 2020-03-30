@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "init-noData": "/components/init-noData/index"
+  }
+}

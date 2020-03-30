@@ -1,0 +1,16 @@
+<view class="wxAccredit column-flex align-center">
+  <image src="/static/images/logo_big.png" class="companyLogo"></image>
+  <view class="companyName">悬壶医讯</view>
+  <!-- 微信授权 -->
+  <block wx:if="{{!isAccredit}}">
+    <view class="companyNotice">申请获取您的公开信息（昵称、头像等）</view>
+    <button class="companyBtn" wx:if="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo" style="width:100%;">微信授权</button>
+    <view wx:else>请升级微信版本</view>
+  </block>
+  <!-- 手机授权 -->
+  <block wx:else>
+    <view class="companyNotice">申请获取您的微信绑定的手机号</view>
+    <button class="companyBtn" open-type="getPhoneNumber" bindgetphonenumber="bindgetphonenumber" style="width:100%;">获取手机号</button>
+    <navigator class="phoneLogin" url="/pages/login/login">使用手机号码登录</navigator>
+  </block>
+</view>

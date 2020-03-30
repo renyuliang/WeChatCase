@@ -1,0 +1,10 @@
+<!--components/imgList/index.wxml-->
+<view class="list-item init-list" wx:for="{{centerList}}" wx:key="index">
+  <navigator url="{{item.path}}" class="item row-flex">
+    <view class="row-flex flex-all {{index == 1 ? 'line' : ''}}">
+      <icon class="iconfont {{item.icon}}" wx:if="{{item.icon}}"></icon>
+      <view class="name">{{item.name}}</view>
+    </view>
+    <icon class="iconfont iconlist_right_arrow"></icon>
+  </navigator>
+</view>

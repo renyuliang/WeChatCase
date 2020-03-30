@@ -1,0 +1,21 @@
+<!--components/init-guide/index.wxml-->
+<view>
+  <slot name="statistic"></slot>
+  <view wx:for="{{guideList}}" wx:key="*this" class="info column-flex" data-getid="{{item.cgId}}" data-browserid="{{item.browseRecordId}}" bindtap="navigateTo">
+    <view class="guideHead row-flex">
+      <text class="English" wx:if="{{item.language === 'EN'}}">英</text>
+      <text class="still">制定</text>
+      <text class="author" wx:if="{{item.fileMaker}}">{{item.fileMaker}}</text>
+      <text class="author" wx:else>未知</text>
+    </view>
+    <view class="guideContent moreOverFlow {{item.state ? 'guideContentWidth' : ''}}">{{item.fileName}}</view>
+    <view class="flex-r-c">
+      <icon class="iconfont iconicon_label"></icon>
+      <view class="category">{{item.fileCategory}}</view>
+      <view class="flex-all sick">
+        <text class="line" wx:if="{{item.fileTag}}">|</text>{{item.fileTag}}</view>
+      <view class="date">{{item.publishDate}}</view>
+    </view>
+    <image class="indexIcon" wx:if="{{item.state}}" src="{{item.state !== '1' ? '/static/images/sign_unread.png':'/static/images/sign_unaccalimed.png'}}"></image>
+  </view>
+</view>

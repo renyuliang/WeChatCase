@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText":"实名认证",
+  "usingComponents": {
+    "v-code": "/components/vcode/index",
+    "v-imgList": "/components/init-imgList/index"
+  }
+}

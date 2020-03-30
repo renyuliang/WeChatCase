@@ -1,0 +1,6 @@
+/* components/init-noData/index.wxss */
+.noDataImg{
+  /* width: 100%; */
+  width: 326rpx;
+  margin-bottom: 32rpx;
+}
