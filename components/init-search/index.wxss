@@ -1,0 +1,21 @@
+/* components/init-search/index.wxss */
+
+.search {
+  height: 80rpx;
+  line-height: 80rpx;
+  background: rgba(245, 245, 245, 1);
+  border-radius: 8rpx;
+  padding-left: 30rpx;
+}
+
+.flex-all {
+  padding-left: 18rpx;
+}
+
+.iconfont {
+  font-size: 36rpx;
+}
+
+.iconedit_delete {
+  padding: 0 30rpx 0 12rpx;
+}

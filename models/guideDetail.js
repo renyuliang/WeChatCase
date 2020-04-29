@@ -4,6 +4,17 @@ import {
 import commonJs from '../utils/common.js'
 
 class guideDetail extends HTTP {
+  // 公用指南生产浏览id
+  setBrowserid(guideId){
+    return this.request({
+      url: commonJs.localurl + '/miniappHome/addBrowseRecordByGuideId',
+      header: commonJs.getToken(),
+      data: {
+        guideId: guideId
+      }
+    })
+  }
+
   // 根据id 查询详情
   detailMsg(guideId) {
     return this.request({
@@ -16,14 +27,15 @@ class guideDetail extends HTTP {
   }
 
   // 二维码扫码进入获取id
-  addBrowseRecord(shareRecordId, shareType, browseRecordId){
+  addBrowseRecord(shareRecordId, shareType, browseRecordId, guideId){
     return this.request({
       url: commonJs.localurl + '/miniappHome/addBrowseRecord',
       header: commonJs.getToken(),
       data: {
         shareId: shareRecordId,
         shareType: shareType,
-        browseRecordId: browseRecordId
+        browseRecordId: browseRecordId,
+        guideId: guideId
       }
     })
   }
@@ -51,32 +63,30 @@ class guideDetail extends HTTP {
   }
 
   // 开始阅读临床指南文档
-  startState(browseRecordId){
+  startState(browseRecordId,guideId){
     return this.request({
       url: commonJs.localurl + '/miniappHome/beginRead',
       header: commonJs.getToken(),
       data: {
-        browseRecordId: browseRecordId
+        browseRecordId: browseRecordId,
+        guideId: guideId
       }
     })
   }
 
   // 结束阅读临床指南文档
-  endState(browseRecordId, readTime) {
+  endState(endData) {
     return this.request({
       url: commonJs.localurl + '/miniappHome/endRead',
       header: commonJs.getToken(),
-      data: {
-        browseRecordId: browseRecordId,
-        readTime: readTime
-      }
+      data: endData
     })
   }
 
   // 发放红包
   sendRedPackage(browseRecordId){
     return this.request({
-      url: commonJs.localurl + '/redPackage/sendRedPackage',
+      url: commonJs.localurl + '/redPackage/weChatTransferToChange',
       header: commonJs.getToken(),
       data: {
         browseRecordId: browseRecordId

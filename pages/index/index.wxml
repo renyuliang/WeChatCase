@@ -1,25 +1,35 @@
-<!--pages/index/index.wxml-->
 <view class="Index column-flex">
-  <view class="header">
-    <view class="headName">悬壶医讯</view>
-  </view>
-  <swiper class="swiper-box" indicator-dots="{{true}}" autoplay="{{true}}" circular="{{true}}" indicator-color="#D5E3FB" indicator-active-color="#1D72EF">
-    <swiper-item class="swiper-item" wx:for="{{bannerList}}" wx:key="index">
-      <image src="{{item.imgUrl}}" mode="widthFix" class="swiper-img"></image>
-    </swiper-item>
-  </swiper>
-  <view class="indexTips flex-r-c">
-    <icon class="iconfont iconlist_article_icon"></icon>
-    最新指南
-  </view>
-  <view class="newGuide setHeight flex-all" wx:if="{{indexList.length}}">
-    <scroll-view scroll-y="true" style="height:{{scrollHeight}}px" bindscrolltolower="tapRollBottom">
-      <init-guide guideList="{{indexList}}"/>
-      <init-tag init-tag="init-tag" tips="{{'暂无更多信息'}}" wx:if="{{noData}}" />
-      <init-load isCenter="{{false}}" wx:if="{{showloadingBottom}}" />
+  <view class="header" style="height:{{headerHeight}}rpx"></view>
+  <view class="indexAbsolute" style="top:{{statusBarHeight}}rpx">
+    <view class="headName" wx:if="{{scroll}}" style="position:fixed;left:-32rpx;top:{{headerScrollHeight}}rpx">悬壶医讯</view>
+    <view class="headName" wx:else>悬壶医讯</view>
+    <scroll-view scroll-y="true" style="height:{{scrollHeight}}px" bindscroll="bindscroll" bindscrolltolower="tapRollBottom">
+      <swiper class="swiper-box" indicator-dots="{{indicatorDots}}" autoplay="{{true}}" circular="{{true}}" indicator-color="#D5E3FB" indicator-active-color="#1D72EF">
+        <swiper-item class="swiper-item" wx:for="{{bannerList}}" wx:key="index">
+          <image src="{{item.imgUrl}}" mode="widthFix" class="swiper-img"></image>
+        </swiper-item>
+      </swiper>
+      <view class="backcolor {{scroll? 'scrollBack':''}}">
+        <view class="indexTips flex-b {{tipsFixed?'fixTips':''}}" style="top:{{tipsFixed?tipsFixedHeight:0}}rpx">
+          <view class="flex-r-c">
+            <text class="iconlist_article"></text>推荐指南
+          </view>
+          <view class="moreGuide" bindtap="moreGuide" wx:if="{{isLogin}}">
+            更多指南
+            <text class="iconfont iconlist_right_arrow_orange1"></text>
+          </view>
+        </view>
+        <view class="newGuide flex-all" style="padding-top:{{tipsFixed?setHeightPadding:0}}px !important">
+          <init-guide guideList="{{publishList}}" init-guide="init-guide" />
+          <init-load isCenter="{{false}}" wx:if="{{showloadingBottom}}" />
+          <view wx:if="{{loginSearch}}">
+            <view class="loginSearch" bindtap="loginGuide" wx:if="{{!isLogin}}">登录查看更多</view>
+            <view class="loginSearch" bindtap="moreGuide" wx:else>更多指南
+              <icon class="iconfont iconlist_right_arrow_blue1"></icon>
+            </view>
+          </view>
+        </view>
+      </view>
     </scroll-view>
-  </view>
-  <view class="newGuide flex-all flex-c" wx:else>
-    <init-noData imgName="{{'image_nocontent.png'}}" tips="{{'暂无收到的指南'}}" />
   </view>
 </view>

@@ -1,0 +1,6 @@
+<!--components/init-search/index.wxml-->
+<view class="search flex-r-c init-search">
+    <icon class="iconfont iconsearch"></icon>
+    <input class="flex-all" placeholder="{{placeholder}}" value="{{searchInput}}" bindfocus="focusInput" bindinput="showInput" bindconfirm="confirmSearch" auto-focus="{{focus}}" confirm-type="search"  placeholder-class="place-holder"  />
+    <icon class="iconfont iconedit_delete" bindtap="deleteSearch" wx:if="{{showDelete}}"></icon>
+  </view>

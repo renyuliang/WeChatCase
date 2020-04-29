@@ -1,4 +1,5 @@
 {
+  "navigationBarTitleText": "资料详情",
   "usingComponents": {
     "init-noData": "/components/init-noData/index"
   }

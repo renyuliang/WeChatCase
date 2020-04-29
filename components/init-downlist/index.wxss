@@ -1,0 +1,20 @@
+/* pages/dialog/index.wxss */
+.mask-tip {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 999;
+}
+
+.diaCon {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 9;
+  background:rgba(248,248,248,1);
+  transform: translateY(-100%);
+}

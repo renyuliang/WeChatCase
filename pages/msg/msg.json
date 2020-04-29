@@ -1,0 +1,10 @@
+{
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "init-noData": "/components/init-noData/index",
+    "init-guide": "/components/init-guide/index",
+    "init-load": "/components/init-loading/index",
+    "init-tag": "/components/init-tag/index"
+  }
+}

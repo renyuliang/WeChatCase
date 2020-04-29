@@ -55,29 +55,7 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": [
-				{
-					"id": 0,
-					"name": "pages/my/myGuide/myGuide",
-					"pathName": "pages/my/myGuide/myGuide",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 1,
-					"name": "pages/my/userAgreement/userAgreement",
-					"pathName": "pages/my/userAgreement/userAgreement",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 2,
-					"name": "pages/my/myGuideDetail/myGuideDetail",
-					"pathName": "pages/my/myGuideDetail/myGuideDetail",
-					"query": "scene=234243234234243",
-					"scene": 1011
-				}
-			]
+			"list": []
 		}
 	}
 }

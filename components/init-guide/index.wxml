@@ -1,12 +1,11 @@
 <!--components/init-guide/index.wxml-->
-<view>
-  <slot name="statistic"></slot>
-  <view wx:for="{{guideList}}" wx:key="*this" class="info column-flex" data-getid="{{item.cgId}}" data-browserid="{{item.browseRecordId}}" bindtap="navigateTo">
+<view class="init-guide">
+  <!-- <view wx:for="{{guideList}}" wx:key="*this" class="info column-flex init-guide" data-getid="{{item.cgId}}" data-browserid="{{item.browseRecordId}}" bindtap="navigateTo">
     <view class="guideHead row-flex">
-      <text class="English" wx:if="{{item.language === 'EN'}}">英</text>
-      <text class="still">制定</text>
-      <text class="author" wx:if="{{item.fileMaker}}">{{item.fileMaker}}</text>
-      <text class="author" wx:else>未知</text>
+      <view class="English" wx:if="{{item.language === 'EN'}}">英</view>
+      <view class="still">制定</view>
+      <view class="author flex-all {{item.state ? 'guideauthor' : ''}}" wx:if="{{item.fileMaker}}">{{item.fileMaker}}</view>
+      <view class="author" wx:else>未知</view>
     </view>
     <view class="guideContent moreOverFlow {{item.state ? 'guideContentWidth' : ''}}">{{item.fileName}}</view>
     <view class="flex-r-c">
@@ -14,8 +13,48 @@
       <view class="category">{{item.fileCategory}}</view>
       <view class="flex-all sick">
         <text class="line" wx:if="{{item.fileTag}}">|</text>{{item.fileTag}}</view>
-      <view class="date">{{item.publishDate}}</view>
+      <view class="date" wx:if="{{item.state}}">{{item.receiveTime}}</view>
+      <view class="date" wx:else>{{item.publishDate}}</view>
     </view>
-    <image class="indexIcon" wx:if="{{item.state}}" src="{{item.state !== '1' ? '/static/images/sign_unread.png':'/static/images/sign_unaccalimed.png'}}"></image>
+  </view> -->
+
+  <view class="list-msg" wx:for="{{guideList}}" wx:key="*this" data-getid="{{item.cgId}}" data-browserid="{{item.browseRecordId}}" bindtap="navigateTo">
+    <!-- 已阅指南 时间分割 -->
+    <view wx:if="{{showDate && (item.readTime!=guideList[index-1].readTime)}}">
+      <view class="tips flex-c init-tag">
+        <text class="tipsLine"></text>
+        <text class="name">{{item.readTime}}</text>
+        <text class="tipsLine"></text>
+      </view>
+    </view>
+    <view class="list-box" >
+      <!-- 消息==>接收时间 -->
+      <view class="get-time" wx:if="{{item.getTime}}" data-state="{{item.state}}">接收时间: {{item.getTime}}</view>
+      <view class="title {{item.initRead && item.initRead !== 'null' ? 'read':'unread'}}">
+        <text wx:if="{{item.language === 'EN'}}">[英]{{item.fileName}}</text>
+        <text wx:else>{{item.fileName}}</text>
+      </view>
+      <view class="author ellipsis"> 制定者:<text class="is-read ml-10">{{item.fileMaker||'未知'}}</text></view>
+      <view class="bottom-box flex-b">
+        <!-- 标签及关键字 -->
+        <view class="flex-r-c">
+          <view class="keywords {{item.fileCategory==='临床路径'?'keywords1':''}}  {{item.fileCategory==='指南'?'keywords2':''}}  {{item.fileCategory==='指南解读'?'keywords3':''}}" wx:if="{{item.fileCategory}}">{{item.fileCategory}}</view>
+          <view class="keywords" wx:for="{{item._fileTag}}" wx:for-item="val" wx:for-index="i" wx:key="i">{{val}}</view> 
+        </view>
+        <view class="date" wx:if="{{item.showDate}}">{{item.showDate}}</view>
+        <!-- 消息红包 0有红包 -->
+        <view class="awrad" wx:if="{{item.giftStuta}}">
+          <!-- 1未领取 2已领取 3已过期  -->
+          <view class="flex-r-c" wx:if="{{item.giftStuta==='0' || item.giftStuta==='1'}}">
+              <text class="gift-icon" ></text>
+              <text class="gift-words">领取奖励</text>
+          </view>
+          <view class="flex-r-c" wx:if="{{item.giftStuta==='2' || item.giftStuta==='3'}}">
+            <text class="gift-icon-select"></text>
+            <text class="gift-words color999">{{item.giftStuta==='2'?'已领奖励':'奖励过期'}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

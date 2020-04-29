@@ -1,4 +1,4 @@
 <!--pages/my/userAgreement/userAgreement.wxml-->
-<view>
-  <!-- <image src='/static/images/erweim.jpg' show-menu-by-longpress="true"></image> -->
+<view class="main-wrap">
+  <web-view src="{{agreement}}"></web-view>
 </view>

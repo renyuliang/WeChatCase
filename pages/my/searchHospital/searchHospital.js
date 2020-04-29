@@ -9,7 +9,6 @@ Page({
    */
   data: {
     searchInput: '',
-    showDelete: false,
     showList: false,
     loading: false,
     // 医院列表
@@ -24,36 +23,24 @@ Page({
 
   },
 
-  onUnload: function () {
-    // console.log(234)
+  // 清空搜索
+  deleteSearch(e) {
+    this.setData({
+      showList: false,
+    })
+    this.getData(e.detail.searchInput)
   },
 
-  showInput(e) {
-    this.setData({
-      showDelete: e.detail.value.length ? true : false,
-      searchInput: e.detail.value
-    })
-  },
-  // 清空搜索
-  deleteSearch() {
-    this.setData({
-      showDelete: false,
-      showList: false,
-      searchInput: ''
-    })
-    this.getData(this.data.searchInput)
-  },
   // 搜索
   confirmSearch(e) {
-    let val = e.detail.value
-    if (val) {
-      this.setData({
-        loading: true,
-        showList: true,
-      })
-      this.getData(val)
-    }
+    this.setData({
+      loading: true,
+      showList: true,
+      searchInput: e.detail.searchInput
+    })
+    this.getData(e.detail.searchInput)
   },
+  
   // 请求数据
   getData(val) {
     getRealAuth.hospital({
@@ -62,16 +49,18 @@ Page({
       pageSize: 20,
     }).then(res => {
       let that = this
-      wx.createSelectorQuery().in(this).selectAll('.tips').boundingClientRect(function (rect) {
-        that.setData({
-          scrollHeight: wx.getSystemInfoSync().windowHeight - rect[0].top -48
+      if (this.data.showList) {
+        wx.createSelectorQuery().in(this).selectAll('.tips').boundingClientRect(function(rect) {
+          that.setData({
+            scrollHeight: wx.getSystemInfoSync().windowHeight - rect[0].top - 48
+          })
+        }).exec()
+        this.setData({
+          loading: false,
+          searchList: res.data.data
         })
-      }).exec()
-      this.setData({
-        loading: false,
-        searchList: res.data.data
-      })
-    }).catch(err=>{
+      }
+    }).catch(err => {
       this.setData({
         loading: false
       })
@@ -82,8 +71,8 @@ Page({
     let hospital = e.currentTarget.dataset.hospital
     let id = e.currentTarget.dataset.id
     // 返回上一页
-    wx.navigateTo({
-      url: '../realAuth/realAuth?store=true&hospital=' + hospital + '&id=' + id,
+    wx.redirectTo({
+      url: '../realAuth/realAuth?hospital=' + hospital + '&id=' + id,
     })
   }
 })

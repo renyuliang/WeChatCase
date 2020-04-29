@@ -4,12 +4,12 @@
     <view class="setInput">
       <view class="flex-r-c">
         <label class="label">手机号：</label>
-        <input class="flex-all" type="number" name="phone" placeholder="请输入手机号码" maxlength="11" bindblur="initBlurPhone" />
-        <v-code phone="{{getPhone}}" sendCode="{{sendCode}}" codeFrom="{{'login'}}" />
+        <input class="flex-all" type="number" name="phone" placeholder="请输入手机号码" maxlength="11" bindblur="initBlurPhone" bindinput="initInputPhone" auto-focus />
+        <v-code phone="{{getPhone}}" codeFrom="{{'login'}}" />
       </view>
       <view class="flex-r-c">
         <label class="label">验证码：</label>
-        <input class="flex-all" type="number" name="code" placeholder="请输入验证码" maxlength="4" bindblur="initBlurCode"/>
+        <input class="flex-all" type="number" name="code" placeholder="请输入验证码" maxlength="4" bindblur="initBlurCode" bindinput="initInputCode" />
       </view>
     </view>
     <button formType="submit" class="loginBtn {{canLogin === true ? 'canLogin' : ''}}" style="width:100%;">同意协议并登录</button>

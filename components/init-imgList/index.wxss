@@ -17,8 +17,10 @@
 
 .flex-all {
   overflow: hidden;
-  /* white-space: nowrap;
-  text-overflow: ellipsis; */
+}
+
+.initicon{
+  font-size: 36rpx;
 }
 
 .name {

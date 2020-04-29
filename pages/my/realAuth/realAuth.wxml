@@ -50,8 +50,8 @@
         <view class="setInput">
           <view class="flex-r-c">
             <label class="label">手机号：</label>
-            <input class="flex-all" type="number" name="setRealPhone" value="{{defaultPhone}}" disabled="true" />
-            <v-code phone="{{defaultPhone}}" sendCode="{{true}}" codeFrom="{{'Auth'}}" />
+            <input class="flex-all phone" type="number" name="setRealPhone" value="{{defaultPhone}}" disabled="true" />
+            <v-code phone="{{defaultPhone}}" codeFrom="{{'Auth'}}" />
           </view>
           <view class="flex-r-c flexCode">
             <label class="label">验证码：</label>
@@ -64,7 +64,7 @@
         <view class="tips">身份信息</view>
         <view class="setInput">
           <view class="flex-r-c">
-            <label class="label">所在医院：</label>
+            <label class="label" style="margin-right:8rpx;">所在医院：</label>
             <v-imgList centerList="{{choseHospital}}" init-list="init-list" style="flex:1;" />
           </view>
           <view class="flex-r-c">
@@ -73,7 +73,7 @@
           </view>
         </view>
       </view>
-      <button formType="submit" class="loginBtn {{canLogin === true ? 'canLogin' : ''}}" style="width:100%;">认证</button>
+      <button formType="submit" loading="{{loading}}" disabled="{{loading}}" class="loginBtn {{canLogin === true ? 'canLogin' : ''}}" style="width:100%;">认证</button>
     </view>
   </form>
 </view>

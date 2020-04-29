@@ -1,0 +1,22 @@
+<!--pages/msg/msg.wxml-->
+<view class="MSG" style="height:{{backHeight}}px">消息</view>
+<scroll-view scroll-y="true" style="height:{{scrollHeight}}px" bindscrolltolower="tapRollBottom">
+  <view class="list-container">
+    <init-guide guideList="{{msgList}}" />
+    <init-load isCenter="{{false}}" wx:if="{{showloadingBottom}}" />
+    <init-tag init-tag="init-noData" tips="{{'暂无更多信息'}}" wx:if="{{noData}}" />
+    <view class="empty-box flex-all flex-column-c" wx:if="{{noDataList}}">
+      <init-noData imgName="{{'image_nocontent.png'}}" tips="{{'您还未收到消息'}}" />
+    </view>
+  </view>
+  <view class="empty-box2 flex-all flex-column-c" wx:if="{{!isLogin}}">
+    <init-noData imgName="{{'image_nocontent.png'}}" tips="{{'登录后查看消息'}}" />
+    <view class="login-btn" wx:if="{{!isLogin}}" bindtap="msgLogin">微信登录</view>
+  </view>
+  <view class="tip-box flex-b" wx:if="{{showTip}}">
+    <text class="tip-msg"> 提示：扫码查阅或他人分享的内容均在消息列表中哦。</text>
+    <view class="close-box" bindtap="closeTip">
+      <text class="close-icon"></text>
+    </view>
+  </view>
+</scroll-view>

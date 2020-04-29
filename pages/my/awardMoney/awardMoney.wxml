@@ -1,0 +1,10 @@
+<!-- 领取完成界面 -->
+<view class="mask-tip">
+  <view class="getWardMoney">
+    <view class="howMuch">
+      {{money}}
+      <text class="moneyStyle">元</text>
+    </view>
+  </view>
+  <view class="backColor"></view>
+</view>

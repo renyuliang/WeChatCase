@@ -1,4 +1,3 @@
-import * as storage from './storage.js'
 class HTTP {
   request({
     url,
@@ -29,14 +28,26 @@ class HTTP {
         if (code.startsWith('2')) {
           resolve(res.data)
           if (res.data.stateCode !== '000000') {
-            if (res.data.stateCode === '700004') {
+            if (res.data.stateCode === '700004' || res.data.stateCode === '700003') {
               return false
             }
-            if (res.data.message) {
-              wx.showToast({
-                title: res.data.message,
-                icon: 'none'
-              })
+            if (res.data.stateCode === '100000' || res.data.stateCode === '700005' || res.data.stateCode === '700006') {
+              if (res.data.message) {
+                wx.showModal({
+                  title: '提示',
+                  content: res.data.message,
+                  showCancel: false
+                })
+              }
+            } else if (res.data.stateCode === '200000') {
+              
+            } else {
+              if (res.data.message) {
+                wx.showToast({
+                  title: '系统异常',
+                  icon: 'none'
+                })
+              }
             }
           }
         } else {

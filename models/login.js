@@ -16,11 +16,15 @@ function randomCode() {
 
 class loginModel extends HTTP {
   // 获取unioid
-  unioid(code) {
+  unioid(code, iv, rawData, encryptedData, signature) {
     return this.request({
       url: commonJs.localurl + '/miniapp/unioid',
       data: {
-        code: code
+        code: code,
+        iv:iv,
+        rawData: rawData,
+        encryptedData: encryptedData,
+        signature: signature
       }
     })
   }
@@ -41,7 +45,7 @@ class loginModel extends HTTP {
   // 登录
   login() {
     return this.request({
-      url: commonJs.baseUrl + '/api/v1/userWechatMiniLogin',
+      url: commonJs.baseurl + '/api/v1/userWechatMiniLogin',
       data: {
         unionId: unionid(),
         signature: md5.md5(unionid() +'yxkkfg@#11!')
@@ -53,7 +57,7 @@ class loginModel extends HTTP {
   // 注册--需要验证码
   registerCode(phone, code) {
     return this.request({
-      url: commonJs.baseUrl + '/api/v1/miniUserRegisterWithVerificationCode',
+      url: commonJs.baseurl + '/api/v1/miniUserRegisterWithVerificationCode',
       data: {
         unionId: unionid(),
         openId: openid(),
@@ -68,7 +72,7 @@ class loginModel extends HTTP {
   // 注册--不要验证码
   registerPhone(phone) {
     return this.request({
-      url: commonJs.baseUrl + '/api/v1/miniUserRegisterWithOutVerificationCode',
+      url: commonJs.baseurl + '/api/v1/miniUserRegisterWithOutVerificationCode',
       data: {
         unionId: unionid(),
         openId: openid(),

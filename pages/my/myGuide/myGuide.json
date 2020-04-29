@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "已查阅指南",
+  "navigationBarTitleText": "已阅指南",
   "usingComponents": {
     "init-guide":"/components/init-guide/index",
     "init-tag": "/components/init-tag/index",

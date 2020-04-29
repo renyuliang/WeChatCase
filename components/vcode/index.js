@@ -13,11 +13,6 @@ Component({
       type: Number,
       value: ''
     },
-    // 是否可以点击 发送验证码
-    sendCode: {
-      type: Boolean,
-      value: false
-    },
     codeFrom: {
       type: String,
       value: ''
@@ -39,40 +34,42 @@ Component({
    */
   methods: {
     getCode() {
-      if (this.properties.sendCode) {
-        if (this.data.getAgain) {
-          let second = 60
-          this.setData({
-            getAgain: false,
-            disabled: true
-          })
-          var time = setInterval(() => {
-            second--;
+      setTimeout(()=>{
+        if (this.properties.phone) {
+          if (this.data.getAgain) {
+            let second = 60
             this.setData({
-              codeText: "已发送" + second
+              getAgain: false,
+              disabled: true
             })
-            if (second <= 0) {
+            var time = setInterval(() => {
+              second--;
               this.setData({
-                codeText: "获取验证码",
-                getAgain: true,
-                disabled: false
+                codeText: "已发送" + second
               })
-              clearInterval(time)
+              if (second <= 0) {
+                this.setData({
+                  codeText: "获取验证码",
+                  getAgain: true,
+                  disabled: false
+                })
+                clearInterval(time)
+              }
+            }, 1000)
+            if (this.properties.codeFrom === 'login') {
+              // 发送请求
+              getCode.list(this.properties.phone).then(res => { })
+            } else {
+              getCode.authCode().then(res => { })
             }
-          }, 1000)
-          if (this.properties.codeFrom === 'login') {
-            // 发送请求
-            getCode.list(this.properties.phone).then(res => {})
-          } else {
-            getCode.authCode().then(res => {})
           }
+        } else {
+          wx.showToast({
+            title: '请输入正确的手机号',
+            icon: 'none'
+          })
         }
-      } else {
-        wx.showToast({
-          title: '请输入正确的手机号',
-          icon: 'none'
-        })
-      }
+      },300)
     },
   }
 })

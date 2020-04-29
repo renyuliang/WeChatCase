@@ -1,15 +1,24 @@
 <!--pages/my/my.wxml-->
 <view>
-  <view class="header row-flex">
+  <!-- 登录后 -->
+  <view class="header row-flex" wx:if="{{isLogin}}">
     <image class="headerImg" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
     <view class="headerInfo">
-      <view class="name">{{userInfo.nickName}}</view>
-      <view class="auth" wx:if="{{!isAuth}}">未认证</view>
-      <view class="auth isAuth" wx:if="{{isAuth}}">
-        已实名
-        <image src="/static/images/sign_certification.png" mode="aspectFill" class="image"></image>
-      </view>
+      <view class="nameNick">{{userInfo.nickName}}</view>
+      <navigator url="/pages/my/realAuth/realAuth" hover-class="none" >
+        <view class="auth" wx:if="{{!isAuth}}">未认证</view>
+        <view class="auth isAuth" wx:if="{{isAuth}}">
+          已实名
+          <image src="/static/images/sign_certification.png" mode="aspectFill" class="image"></image>
+        </view>
+      </navigator>
     </view>
   </view>
+  <!-- 未登录 -->
+  <view class="header row-flex" bindtap="toLogin" wx:else>
+    <image class="headerImg noborder" src="/static/images/avatar.png" mode="aspectFill"></image>
+    <view class="login-box">登录 / 注册</view>
+  </view>
+
   <v-imgList centerList="{{centerList}}" init-list="init-list" />
 </view>

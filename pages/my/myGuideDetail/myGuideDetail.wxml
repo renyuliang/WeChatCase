@@ -1,41 +1,69 @@
 <!--指南详情-->
-<view class="detail">
+<view class="bordertop"></view>
+<view class="detail" wx:if="{{showView}}">
+  <!-- 红包领取或过期信息 -->
+  <view class="conAward" wx:if="{{giftStateResult}}">
+    <icon class="iconfont iconsign_expired" wx:if="{{giftState === 3}}"></icon>
+    <icon class="iconfont iconsign_success" wx:if="{{giftState === 2}}"></icon>
+    {{giftResult}}
+  </view>
+  <!-- 指南信息 -->
   <view class="detailInfo">
-    <view class="detailTitle moreOverFlow">{{detailMsg.fileName}}</view>
-    <view class="detailCage">
-      <text class="English" wx:if="{{detailMsg.language=='EN'}}">英</text>
-      <text class="still">{{detailMsg.fileCategory}}</text>
+    <view class="detailTitle" wx:if="{{detailMsg.language=='EN'}}">[英]{{detailMsg.fileName}}</view>
+    <view class="detailTitle" wx:else>{{detailMsg.fileName}}</view>
+    <view class="detailCage row-flex">
+      <text class="still {{detailMsg.fileCategory=='指南解读'?'still-read':''}} {{detailMsg.fileCategory=='指南'?'still-guide':''}}" wx:if="{{detailMsg.fileCategory}}">{{detailMsg.fileCategory}}</text>
     </view>
-    <view class="detailSame">制定者：{{detailMsg.fileMaker}}</view>
-    <view class="detailSame">出处：{{detailMsg.fileSource}}</view>
-    <view class="detailSame">发表日期：{{detailMsg.publishDate}}</view>
-    <view class="row-flex">
-      <text>关键词:</text>
-      <view class="flex-all">{{detailMsg.fileTag}}</view>
+    <view class="detailSame row-flex">
+      <text class="label">制定者：</text>
+      <text class="flex-all">{{detailMsg.fileMaker}}</text>
+    </view>
+    <view class="detailSame row-flex">
+      <text class="label">出处：</text>
+      <text class="flex-all">{{detailMsg.fileSource}}</text>
+    </view>
+    <view class="detailSame row-flex">
+      <text class="label">发表日期：</text>
+      <text class="flex-all">{{detailMsg.publishDate}}</text>
+    </view>
+    <view class="row-flex importNotice">
+      <text>关键词：</text>
+      <text class="flex-all">{{detailMsg.fileTag}}</text>
     </view>
   </view>
-  <view class="detailContent">
+  <!-- 摘要 -->
+  <view class="detailContent" wx:if="{{detailMsg.fileAbstract}}">
     <view class="conMain">指南摘要</view>
-    <view class="conNews moreOverFlow">{{detailMsg.fileAbstract||'暂无相关指南摘要，可进入指南直接查看'}}</view>
-    <view class="conAward" wx:if="{{giftStateResult}}">
-      <icon class="iconfont iconsign_expired" wx:if="{{giftState === '3'}}"></icon>
-      <icon class="iconfont iconsign_success" wx:if="{{giftState === '2'}}"></icon>
-      {{giftResult}}
-    </view>
+    <view class="conNews moreOverFlow">{{detailMsg.fileAbstract}}</view>
   </view>
   <view class="flex-column-c">
-    <view class="readGuide" bindtap="bindPDF">
-      <icon class="iconfont iconsign_reward" wx:if="{{giftState === '0'}}"></icon>阅读指南
+    <view class="readGuide {{detailMsg.fileAbstract?'':'mt-240'}}" bindtap="bindPDF">
+      <icon class="iconfont iconsign_reward" wx:if="{{giftState === 0}}"></icon>阅读指南
     </view>
     <view class="flex-r-c">
-      <button size="mini" plain="true" open-type="share" class="share">
+      <button size="mini" plain="true" open-type="share" class="share" wx:if="{{showShare}}">
         <image src="/static/images/share.png" class="shareImg"></image>
         分享给好友
       </button>
-      <view class="readWard" bindtap="getAward" wx:if="{{giftState === '1'}}">
+      <view class="readWard" bindtap="getAward" wx:if="{{giftState === 1}}">
         阅读奖励
         <view class="readWardTips">领取奖励</view>
       </view>
+    </view>
+  </view>
+</view>
+<!-- 红包弹窗 -->
+<view class="mask-tip flex-column-c" hidden="{{!getReward}}">
+  <view class="alltop">
+    <view class="redBack">
+      <image src="/static/images/pop_reward.png" mode="widthFix" class="redImg"></image>
+      <view class="backInfo">
+        <view class="redTime">过期时间：{{getRewardInfo.time}}</view>
+        <button plain class="initBtn" loading="{{btnLoading}}" disabled="{{btnLoading}}" bindtap="awardMoney">领取奖励</button>
+      </view>
+    </view>
+    <view class="closeRed">
+      <icon type="cancel" color="#fff" size="32" bindtap="exitWard" />
     </view>
   </view>
 </view>

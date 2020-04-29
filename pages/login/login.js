@@ -16,9 +16,7 @@ Page({
     canLogin: false,
     isPhone: false,
     isCode: false,
-    getPhone: '',
-    // 是否可以发送验证码
-    sendCode: false
+    getPhone: ''
   },
 
   /**
@@ -34,35 +32,35 @@ Page({
   },
 
   initBlurPhone(e) {
-    let phone = e.detail.value
-    this.setData({
-      isPhone: isPhone(phone) ? true : false
-    })
-    if (!isPhone(phone)) {
+    if (!isPhone(e.detail.value)) {
       wx.showToast({
         title: '请输入正确的手机号',
         icon: 'none'
       })
-    } else {
-      this.setData({
-        sendCode: true,
-        getPhone: phone
-      })
     }
+  },
+
+  initInputPhone(e) {
+    this.setData({
+      isPhone: isPhone(e.detail.value) ? true : false,
+      getPhone: isPhone(e.detail.value) ? e.detail.value : ''
+    })
     this.isCanLogin()
   },
 
   initBlurCode(e) {
-    let code = e.detail.value
-    this.setData({
-      isCode: code.length ? true : false
-    })
-    if (!code.length) {
+    if (!e.detail.value.length) {
       wx.showToast({
         title: '请输入验证码',
         icon: 'none'
       })
     }
+  },
+
+  initInputCode(e){
+    this.setData({
+      isCode: e.detail.value.length === 4 ? true : false
+    })
     this.isCanLogin()
   },
 
@@ -78,15 +76,15 @@ Page({
     }
     // 请求注册
     getLogin.registerCode(e.detail.value.phone, e.detail.value.code).then(result => {
-      return getLogin.login()
+      if (result.stateCode === '000000') {
+        return getLogin.login()
+      }
     }).then(res => {
-      getApp().codeSuccess(res.stateCode, function () {
+      if (res.stateCode === '000000') {
         // 获取token
         getApp().storeToken(res.data.tokenMarkName, res.data.tokenValue)
-        wx.switchTab({
-          url: '/pages/index/index'
-        })
-      })
+        getApp().initAddress()
+      }
     })
   }
 })

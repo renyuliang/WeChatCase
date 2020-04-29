@@ -11,18 +11,20 @@ Page({
    */
   data: {
     guideList: [],
-    tips: '',
     pageNum: 1, // 当前页码
     total: 0, // 总条数
     showloadingBottom: false,
-    noData: false
+    noData: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    this.getData(this.data.pageNum)
+  onShow: function(options) {
+    this.setData({
+      guideList: []
+    })
+    this.getData(1)
   },
   // 加载数据
   getData(pageNum) {
@@ -33,19 +35,31 @@ Page({
       this.setData({
         showloadingBottom: false
       })
-      if (res.data) {
-        if (res.data.list) {
-          res.data.list.forEach(item => {
-            if (item.publishDate) {
-              item.publishDate = regular.changeDate(item.publishDate, 'guide')
+      if (res.data && res.data.list) {
+        console.log(res.data.list)
+        res.data.list.forEach(item => {
+          if (item.readTime) {
+            item.readTime = regular.changeDate(item.readTime, 'guide');
+          }
+          if (item.fileTag) {
+            let tags = ''
+            if (!item.fileTag.includes('/')) {
+              item.fileTag = item.fileTag + '/'
             }
-          })
-          this.setData({
-            guideList: this.data.guideList.concat(res.data.list),
-            tips: '累计已查阅指南 ' + res.data.total + ' 份',
-            total: res.data.total
-          })
-        }
+            tags = item.fileTag.split(/\//g);
+            let newarr = tags.filter(val => {
+              if (val.length <= 6) {
+                return val
+              }
+            })
+            item._fileTag = newarr.length > 3 ? newarr.slice(0, 3) : newarr;
+          }
+          item.initRead = 'read'
+        })
+        this.setData({
+          guideList: this.data.guideList.concat(res.data.list),
+          total: res.data.total
+        })
       }
     })
   },

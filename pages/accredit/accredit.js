@@ -1,4 +1,5 @@
 // pages/accredit/accredit.js
+import * as storage from '../../utils/storage.js'
 import {
   loginModel
 } from '../../models/login.js';
@@ -18,9 +19,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.setData({
-      isAccredit: JSON.parse(options.isAccredit)
-    })
+    if (options.isAccredit) {
+      this.setData({
+        isAccredit: JSON.parse(options.isAccredit)
+      })
+    }
+    if (getCurrentPages()[0].route !== 'pages/accredit/accredit') {
+      storage.set('backPath', getCurrentPages()[0].route)
+    }
   },
   bindGetUserInfo: function(e) {
     const vm = this;
@@ -28,31 +34,32 @@ Page({
       wx.showLoading({
         title: '授权中...',
       })
-      getApp().userLogin(function(){
-        vm.setData({
-          isAccredit: true
-        })
+      getApp().userLogin('isAccredit')
+    } else {
+      wx.navigateBack({
+        delta: 1
       })
     }
   },
 
   bindgetphonenumber(e) {
     if (e.detail.iv) {
-      getLogin.defaultPhone(e.detail).then(res=>{
+      getLogin.defaultPhone(e.detail).then(res => {
         return getLogin.registerPhone(res.data)
-      }).then(resgister=>{
-        return getLogin.login()
-      }).then(success=>{
-        getApp().codeSuccess(success.stateCode, function () {
+      }).then(resgister => {
+        if (resgister.stateCode === '000000') {
+          return getLogin.login()
+        }
+      }).then(success => {
+        if (success.stateCode === '000000') {
           // 获取token
           getApp().storeToken(success.data.tokenMarkName, success.data.tokenValue)
-          wx.switchTab({
-            url: '/pages/index/index'
-          })
-        })
+          getApp().initAddress()
+        }
       })
     }
   },
+
   // 隐藏直接到首页的button
   onShow() {
     wx.hideHomeButton()

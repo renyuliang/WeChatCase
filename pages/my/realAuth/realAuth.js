@@ -32,7 +32,8 @@ Page({
       setRealHospital: '',
       setRealHospitalId: '',
       setRealDepart: ''
-    }
+    },
+    loading: false
   },
 
   /**
@@ -46,24 +47,15 @@ Page({
         "choseHospital[0].name": options.hospital
       })
       // 修改缓存中医院的值
-      let _hospital = storage.get(storeKey)
-      if (_hospital) {
-        _hospital.setRealHospital = options.hospital
-        _hospital.setRealHospitalId = options.id
-        storage.set(storeKey, _hospital)
-      } else {
-        this.setData({
-          "setAuth.setRealHospital": options.hospital,
-          "setAuth.setRealHospitalId": options.id
-        })
-        storage.set(storeKey, this.data.setAuth)
-      }
-      // 填充数据
-      if (options.store) {
-        this.setData({
-          setAuth: storage.get(storeKey)
-        })
-      }
+      this.setData({
+        "setAuth.setRealName": storage.get(storeKey).setRealName,
+        "setAuth.setRealCard": storage.get(storeKey).setRealCard,
+        "setAuth.setRealCode": storage.get(storeKey).setRealCode,
+        "setAuth.setRealHospital": options.hospital,
+        "setAuth.setRealHospitalId": options.id,
+        "setAuth.setRealDepart": storage.get(storeKey).setRealDepart
+      })
+      storage.set(storeKey, this.data.setAuth)
     } else {
       if (storage.get(storeKey)) {
         storage.remove(storeKey)
@@ -173,8 +165,8 @@ Page({
     if (!this.data.canLogin) {
       return false
     }
-    wx.showLoading({
-      title: '认证中...'
+    this.setData({
+      loading: true
     })
     // 请求数据
     getRealAuth.real(
@@ -186,21 +178,31 @@ Page({
       this.data.setAuth.setRealHospital,
       this.data.setAuth.setRealDepart
     ).then(res => {
-      wx.hideLoading()
-      getApp().codeSuccess(res.stateCode,function(){
-        wx.switchTab({
-          url: '/pages/my/my/my',
-        })
+      this.setData({
+        loading: false
       })
-      // 验证码错误或已失效
-      // this.setData({
-      //   codeFail: '验证码错误或已失效'
-      // })
+      if (res.stateCode === '000000') {
+        wx.showToast({
+          title: '认证成功',
+          icon: 'none'
+        })
+        setTimeout(() => {
+          wx.switchTab({
+            url: '/pages/my/my/my',
+          })
+        }, 1000)
+      }
+    }).catch(()=>{
+      this.setData({
+        loading: false
+      })
     })
   },
-  onUnload:function(){
-    // wx.navigateBack({
-    //   delta: 2
-    // })
+  onUnload(){
+    if (!this.data.isAuth) {
+      wx.navigateBack({
+        delta:2
+      })
+    }
   }
 })

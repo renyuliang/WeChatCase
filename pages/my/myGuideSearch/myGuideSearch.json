@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "更多指南",
+  "usingComponents": {
+    "init-search": "/components/init-search/index",
+    "init-guide": "/components/init-guide/index",
+    "init-load": "/components/init-loading/index",
+    "init-tag": "/components/init-tag/index",
+    "init-downlist": "/components/init-downlist/index",
+    "init-noData": "/components/init-noData/index"
+  }
+}

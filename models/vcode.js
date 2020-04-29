@@ -5,7 +5,7 @@ class codeModel extends HTTP {
   // 登录-验证码接口
   list(getPhone) {
     return this.request({
-      url: commonJs.baseUrl + '/api/v1/sendRegisterCode',
+      url: commonJs.baseurl + '/api/v1/sendRegisterCode',
       data: {
         phone: getPhone
       },

@@ -1,0 +1,55 @@
+<!--pages/my/myGuideSearch/myGuideSearch.wxml-->
+<view class="moreGuideFieed">
+  <view class="moreGuide">
+    <init-search init-search="init-search" placeholder="{{'请输入指南名称'}}" focus="{{false}}" bind:deleteSearch="deleteSearch" bind:confirmSearch="confirmSearch" bind:focusInput="focusInput"/>
+    <view class="chose flex-b">
+      <view class="choseWidth left {{searchForm.depart !== '科室疾病'?'sameColor':''}}" bindtap="choseSick">{{searchForm.depart}}
+        <icon class="donwicon iconfont {{!showDialogGuideSick?'iconfilter_under_arrow1':'iconfilter_on_arrow1'}}"></icon>
+      </view>
+      <view class="choseWidth center {{searchForm.year !== '发表年限'?'sameColor':''}}" bindtap="choseYear">{{searchForm.year}}
+        <icon class="donwicon iconfont {{!showDialogGuideYear?'iconfilter_under_arrow1':'iconfilter_on_arrow1'}}"></icon>
+      </view>
+      <view class="choseWidth right {{searchForm.style !== '指南类别'?'sameColor':''}}" bindtap="choseStyle">{{searchForm.style}}
+        <icon class="donwicon iconfont {{!showDialogGuideStyle?'iconfilter_under_arrow1':'iconfilter_on_arrow1'}}"></icon>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="scroll" style="position:relative;top:{{fixHeight}}px;">
+  <!-- 弹窗 -->
+  <init-downlist id="initdownlist" showDialog="{{showDialog}}" showHeight="{{showHeight}}" maskTop="{{fixHeight}}" bind:tipHideModal="tipHideModal">
+    <view slot="downlist">
+      <!-- 科室疾病 -->
+      <view class="guideSick row-flex" wx:if="{{showDialogGuideSick}}">
+        <view class="width50 depart">
+          <scroll-view scroll-y="true" style="max-height:{{scrollHeight*0.8}}px">
+            <view class=" style {{guideDepartSelectIndex === index ? 'styleSelect initSelect':''}} ellipsis" bindtap="hideModalDepart" data-index="{{index}}" data-id="{{item.id}}" data-name="{{item.name}}" wx:for="{{guideDepart}}" wx:key="index">{{item.name}}
+              <view class="trangle sick" wx:if="{{guideDepartSelectIndex === index}}"></view>
+            </view>
+          </scroll-view>
+        </view>
+        <view class="width50 sick">
+          <scroll-view scroll-y="true" style="max-height:{{scrollHeight*0.8}}px">
+            <view class="flex-r-c style {{guideSickSelectIndex === index ? 'styleSick':''}}" bindtap="hideModalSick" data-index="{{index}}" data-name="{{item.name}}" wx:for="{{guideSick}}" wx:key="index">{{item.name}}</view>
+          </scroll-view>
+        </view>
+      </view>
+      <!-- 发表年限 -->
+      <view class="guideYear" wx:if="{{showDialogGuideYear}}">
+        <view class="flex-r-c style {{guideYearSelectIndex === index ? 'styleSelect':''}}" bindtap="hideModalYear" data-year="{{item}}" data-index="{{index}}" wx:for="{{guideYear}}" wx:key="index">{{item}}</view>
+      </view>
+      <!-- 指南类别 -->
+      <view class="guideStyle" wx:if="{{showDialogGuideStyle}}">
+        <view class="flex-r-c style {{guideStyleSelectIndex === index ? 'styleSelect':''}}" bindtap="hideModalStyle" data-value="{{item.value}}" data-index="{{index}}" wx:for="{{guideStyle}}" wx:key="index">{{item.name}}</view>
+      </view>
+    </view>
+  </init-downlist>
+  <scroll-view class="listScroll" scroll-y="true" style="height:{{scrollHeight}}px" bindscrolltolower="tapRollBottom">
+    <init-guide guideList="{{guideList}}" init-guide="{{guideNoData ? '':'init-guide'}}" />
+    <init-load isCenter="{{false}}" wx:if="{{showloadingBottom}}" />
+    <init-tag init-tag="init-noData" tips="{{'暂无更多信息'}}" wx:if="{{noData}}" />
+    <view class="flex-c" style="height:{{scrollHeight}}px" wx:if="{{guideNoData}}">
+      <init-noData imgName="{{'image_noarticle.png'}}" tips="{{'未找到相关指南'}}" />
+    </view>
+  </scroll-view>
+</view>

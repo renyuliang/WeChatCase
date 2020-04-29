@@ -9,22 +9,6 @@ page {
   height: 100%;
 }
 
-.search {
-  height: 80rpx;
-  line-height: 80rpx;
-  background: rgba(245, 245, 245, 1);
-  border-radius: 8rpx;
-  padding: 0 30rpx;
-}
-
-.flex-all {
-  padding-left: 18rpx;
-}
-
-.iconfont {
-  font-size: 36rpx;
-}
-
 .tips {
   margin: 48rpx 0;
   font-size: 24rpx;
@@ -33,6 +17,10 @@ page {
 
 .tipsIndex {
   color: #1d72ef;
+}
+
+.listTips{
+  padding-left: 32rpx;
 }
 
 .searchCon{

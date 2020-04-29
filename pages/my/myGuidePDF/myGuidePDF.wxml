@@ -1,5 +1,5 @@
 <!--pages/my/myGuidePDF/myGuidePDF.wxml-->
-<!-- <web-view src="https://www.baidu.com/"></web-view> -->
+<view class="bordertop"></view>
 <web-view src="{{pdf}}" wx:if="{{showPDF}}"></web-view>
 <view class="noData flex-c" wx:else>
   <init-noData imgName="{{'image_noarticle.png'}}" tips="{{'该指南不存在'}}" />

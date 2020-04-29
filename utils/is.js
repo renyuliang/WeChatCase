@@ -21,11 +21,13 @@ export default {
   emoji: isEmoji,
   IDcard: isIDcard,
 
-
   value: isValue,
   space: isSpace,
   checkbox: vCheckbox,
-  changeDate
+  changeDate,   //时间转换 年月日
+  changeDateHour,  //时间转换 年月日时分
+  changeMsgDate,   //消息模块时间转换  
+  cutout   //字符串截断
 }
 
 
@@ -270,7 +272,7 @@ function addZero(m) {
   return m < 10 ? '0' + m : m
 }
 
-// 时间戳转化为时间
+// 时间戳转化为年-月-日
 export function changeDate(millis, guide) {
   var time = new Date(millis)
   // 年
@@ -279,6 +281,10 @@ export function changeDate(millis, guide) {
   var month = time.getMonth() + 1
   // 日
   var date = time.getDate()
+  // 时
+  var hour = time.getHours()
+  // 分
+  var mins = time.getMinutes()
   if (guide === 'guide') {
     if (year === new Date().getFullYear()) {
       return addZero(month) + '-' + addZero(date)
@@ -288,4 +294,67 @@ export function changeDate(millis, guide) {
   } else {
     return year + '-' + addZero(month) + '-' + addZero(date)
   }
+}
+
+//消息模块的时间处理
+export function changeMsgDate(millis){
+  var time = new Date(millis)
+  // 年
+  var year = time.getFullYear()
+  // 月
+  var month = time.getMonth() + 1
+  // 日
+  var date = time.getDate()
+  // 时
+  var hour = time.getHours()
+  // 分
+  var mins = time.getMinutes()
+  //是同一年份和月份
+  if (year === new Date().getFullYear()){
+    if ((month === new Date().getMonth() + 1) && (date === new Date().getDate())){
+      //今天
+      return '今天' + ' ' + addZero(hour) + ':' + addZero(mins)
+    } else if ((month === new Date().getMonth() + 1) && (date === new Date().getDate() - 1)){
+      //昨天
+      return '昨天' + ' ' + addZero(hour) + ':' + addZero(mins)
+    }else{
+      return addZero(month) + '-' + addZero(date) + ' '  + addZero(hour) + ':' + addZero(mins)
+    }
+  }else{
+    return year + ' ' + addZero(month) + '-' + addZero(date) + ' ' + addZero(hour) + ':' + addZero(mins)
+  }
+
+  if (year === new Date().getFullYear()) {
+    return addZero(month) + '-' + addZero(date)
+  } else {
+    return year + '-' + addZero(month) + '-' + addZero(date)
+  }
+}
+
+// 时间戳转化为年-月-日-时-分
+export function changeDateHour(millis) {
+  var time = new Date(millis)
+  // 年
+  var year = time.getFullYear()
+  // 月
+  var month = time.getMonth() + 1
+  // 日
+  var date = time.getDate()
+  // 时
+  var hour = time.getHours()
+  // 分
+  var mins = time.getMinutes()
+  return year + '-' + addZero(month) + '-' + addZero(date) + ' ' + addZero(hour) + ':' + addZero(mins)
+}
+
+/**
+ * 字符串截断方法,字符串长度大于指定值
+ * @param {String}  
+ * @return String
+ */
+export function cutout(val, num){
+  if (val && val.length > num) {
+    val = val.substring(0, num) + '...'
+  }
+  return val;
 }

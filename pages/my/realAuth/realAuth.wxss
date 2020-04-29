@@ -14,7 +14,7 @@
 .infoHead {
   height: 140rpx;
   line-height: 140rpx;
-  border-bottom: 1rpx dashed #eee;
+  border-bottom: 2rpx dashed #EEEEEE;
   position: relative;
 }
 
@@ -37,6 +37,10 @@
   position: absolute;
   top: 0;
   right: -32rpx;
+}
+
+.phone{
+  color: #7F7F7F !important;
 }
 
 .infoCon {
@@ -96,6 +100,7 @@
   font-size: 32rpx;
   color: #7f7f7f;
   width: 160rpx;
+  margin-right: 10rpx;
 }
 
 .flex-all {
